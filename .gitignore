@@ -1,0 +1,5 @@
+cookbooks/*
+!cookbooks/.gitkeep
+.vagrant
+.vagrant.d
+Berksfile.lock
