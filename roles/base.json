@@ -1,0 +1,22 @@
+{
+  "name": "base",
+  "description": "A simple base role for your server goodness",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+    "chef_client": {
+      "init_style": "init"
+    }
+  },
+  "chef_type": "role",
+  "run_list": [
+      "recipe[apt]",
+      "recipe[chef-client]",
+      "recipe[chef-htop]",
+      "recipe[emacs]",
+      "recipe[vim]"
+  ],
+  "env_run_lists": {
+  }
+}
