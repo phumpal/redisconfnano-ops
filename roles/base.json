@@ -12,8 +12,7 @@
   "chef_type": "role",
   "run_list": [
       "recipe[apt]",
-      "recipe[chef-client]",
-      "recipe[chef-htop]",
+      "recipe[htop]",
       "recipe[emacs]",
       "recipe[vim]"
   ],
