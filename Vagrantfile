@@ -19,7 +19,6 @@ Vagrant.configure("2") do |config|
       node_config.vm.provision :chef_solo do |chef|
         chef.cookbooks_path = ['site-cookbooks', 'cookbooks']
         chef.roles_path     = 'roles'
-        chef.environment    = "development"
         chef.arguments      = '-l debug'
         chef.run_list = [
           "role[base]",

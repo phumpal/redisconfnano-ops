@@ -8,6 +8,7 @@ default[:redis][:user]									= "redis"
 default[:redis][:group]									= "redis"
 default[:redis][:daemonize] 							= "no"
 default[:redis][:port] 									= 6379
+default[:redis][:slave_port]							= 6380
 default[:redis][:timeout] 								= 0
 
 default[:rackspace][:api][:key]							= nil
@@ -28,4 +29,4 @@ default[:local][:rotate]								= nil
 default[:rvm][:version]									= "latest"
 default[:rvm][:default_ruby] 							= "ruby-2.0.0-p247"
 default[:rvm][:rubies]									= [ "ruby-2.0.0-p247" ]
-default[:rvm][:global_gems]								= [ { "name": "backup" } ]
+default[:rvm][:global_gems]								= [ { "name" => "backup" } ]

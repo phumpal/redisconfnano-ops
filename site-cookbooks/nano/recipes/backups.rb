@@ -20,9 +20,9 @@ when "rackspace"
     group node[:redis][:user]
     variables ({
       :rackspace_api_key => default[:rackspace][:api][:key],
-      :rackspace_user => default[:rackspace][:user]
-      :slave_ip => node[:rackspace][:private_ip] 
-      :rackspace_cf_container => node[:rackspace][:cf][:container,
+      :rackspace_user => default[:rackspace][:user],
+      :slave_ip => node[:rackspace][:private_ip],
+      :rackspace_cf_container => node[:rackspace][:cf][:container],
       :rackspace_cf_segments => node[:rackspace][:cf][:segments]
     })
   end
@@ -49,10 +49,9 @@ else
     group node[:redis][:user]
     variables ({
       :slave_ip => node[:ipaddress],
-      :slave_port => node[:redis][:slave][:ipaddres],
+      :slave_port => node[:redis][:slave_port],
       :backups_path => node[:local][:path],
       :rotate_me => node[:local][:rotate_me]
-      :
     })
   end
 end
