@@ -19,7 +19,9 @@ You'll also need [Virtualbox](https://www.virtualbox.org/wiki/Downloads) but I w
 	vagrant up --provider=vmware_fusion
 
 ## Redis on AWS with S3 backups
+	vagrant plugin install vagrant-aws
     vagrant up --provider=aws
 
 ## Redis on Rackspace with CloudFile backups
+    vagrant plugin install vagrant-rackspace
     vagrant up --provider=rackspace
