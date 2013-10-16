@@ -7,7 +7,7 @@ sysctl_param 'vm.overcommit_memory' do
   action :apply
 end
 
-user_ulimit node[:ulimit][:user] do
+user_ulimit node[:redis][:user] do
   filehandle_soft_limit node[:ulimit][:filehandle_soft_limit]
   filehandle_hard_limit node[:ulimit][:filehandle_hard_limit]
 end

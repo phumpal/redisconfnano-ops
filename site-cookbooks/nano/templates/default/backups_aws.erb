@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+Backup::Storage::S3.defaults do |s3|
+  s3.access_key_id = <%= @access_key_id %>
+  s3.secret_access_key = <%= @secret_access_key %>
+end
+
+Backup::Model.new(:redis_backups, "Redis AWS Backups") do
+  split_into_chunks_of 512
+
+  database Redis, :redis_backups do |db|
+    db.name               = "dump"
+    db.host               = <%= @slave_ip %>
+    db.port               = 6379
+    db.path               = "/var/lib/redis"
+    db.socket             = "/var/run/redis/redis.sock"
+    db.invoke_save        = true
+  end
+
+  compress_with Bzip2 do |compression|
+    compression.level = 9
+  end
+
+  store_with S3 do |s3|
+    s3.region             = <%= @region %>
+    s3.bucket             = <%= @bucket %>
+    s3.path               = <%= @path %>
+    end
+end

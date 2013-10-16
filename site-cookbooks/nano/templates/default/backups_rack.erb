@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+
+Backup::Storage::CloudFiles.defaults do |cf|
+  cf.api_key            = <%= @rackspace_api_key %>
+  cf.username           = <%= @rackspace_user %>
+end
+
+Backup::Model.new(:redis_backups, "Redis Rack Backups") do
+  split_into_chunks_of 512
+
+  database Redis, :redis_backups do |db|
+    db.name               = "dump"
+    db.host               = <%= @slave_ip %>
+    db.port               = 6379
+    db.path               = "/var/lib/redis"
+    db.socket             = "/var/run/redis/redis.sock"
+    db.invoke_save        = true
+  end
+
+  compress_with Bzip2 do |compression|
+    compression.level = 9
+  end
+
+  store_with CloudFiles do |cf|
+    cf.container          = <%= @rackspace_cf_container %>
+    cf.segments_container = <%= @rackspace_cf_seg_container %>
+    cf.segment_size       = 250
+    cf.path               = "/"
+    cf.servicenet         = true
+    cf.days_to_keep       = 30
+    cf.max_retries        = 10
+    cf.retry_waitsec      = 30
+  end
+end

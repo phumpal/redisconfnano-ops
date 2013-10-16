@@ -4,6 +4,7 @@ site :opscode
 cookbook "aws"
 cookbook "chef-client"
 cookbook "emacs"
+cookbook "rvm"
 cookbook "ulimit"
 cookbook "vim"
 
