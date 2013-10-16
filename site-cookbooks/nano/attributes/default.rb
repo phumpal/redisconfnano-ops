@@ -21,11 +21,13 @@ default[:aws][:region]									= nil
 default[:aws][:bucket]									= nil
 default[:aws][:path]									= nil
 
-default[:local][:path]									= nil
-default[:local][:rotate]								= nil
-
+default[:local][:path]									= "/tmp"
+default[:local][:rotate]								= 7
 
 default[:rvm][:version]									= "latest"
 default[:rvm][:default_ruby] 							= "ruby-2.0.0-p247"
 default[:rvm][:rubies]									= [ "ruby-2.0.0-p247" ]
 default[:rvm][:global_gems]								= [ { "name" => "backup" }, { "name" => "chef" } ]
+
+default[:monit][:notify_email]							= "root@localhost"
+default[:monit][:poll_interval]							= 5

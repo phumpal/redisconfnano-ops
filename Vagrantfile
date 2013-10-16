@@ -23,7 +23,8 @@ Vagrant.configure("2") do |config|
         chef.run_list = [
           "role[base]",
           "recipe[nano::default]",
-          "recipe[nano::backups]"
+          "recipe[nano::backups]",
+          "recipe[nano::monitor]"
         ]
       end
     end

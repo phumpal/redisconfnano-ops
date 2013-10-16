@@ -59,5 +59,5 @@ end
 cron_d "redis_backups" do
   minute 30
   command "/bin/bash -l -c 'backup perform -t redis_backups --config-file /var/tmp/Backup/config.rb'"
-  user "redis"
+  user node[:redis][:user]
 end
