@@ -14,7 +14,7 @@ end
 case node.chef_environment
 when "rackspace"
   template "/var/tmp/Backup/config.rb" do
-    source "backup_rack.erb"
+    source "backups_rack.erb"
     mode 0644
     owner node[:redis][:user]
     group node[:redis][:user]
@@ -28,7 +28,7 @@ when "rackspace"
   end
 when "aws"
   template "/var/tmp/Backup/config.rb" do
-    source "backup_aws.erb"
+    source "backups_aws.erb"
     mode 0644
     owner node[:redis][:user]
     group node[:redis][:user]
@@ -43,13 +43,13 @@ when "aws"
   end
 else
   template "/var/tmp/Backup/config.rb" do
-    source "backup_local.erb"
+    source "backups_local.erb"
     mode 0644
     owner node[:redis][:user]
     group node[:redis][:user]
     variables ({
       :slave_ip => node[:ipaddress],
-      :slave_port => node[:redis][:slave_port],
+      :slave_port => 6379,
       :backups_path => node[:local][:path],
       :rotate_me => node[:local][:rotate_me]
     })
