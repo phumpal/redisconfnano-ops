@@ -2,11 +2,9 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  # install by `vagrant plugin install vagrant-cachier`
+
   config.cache.auto_detect = true unless config.cache.nil?
-  # install by `vagrant plugin install vagrant-omnibus`
   config.omnibus.chef_version = :latest unless config.omnibus.nil?
-  # install by `vagrant plugin install vagrant-berkshelf`
   config.berkshelf.enabled = true unless config.berkshelf.nil?
 
   config.vm.box = "precise64"
