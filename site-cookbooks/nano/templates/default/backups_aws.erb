@@ -10,7 +10,7 @@ Backup::Model.new(:redis_backups, "Redis AWS Backups") do
 
   database Redis, :redis_backups do |db|
     db.name               = "dump"
-    db.host               = <%= @slave_ip %>
+    db.host               = "<%= @slave_ip %>""
     db.port               = 6379
     db.path               = "/var/lib/redis"
     db.socket             = "/var/run/redis/redis.sock"
@@ -22,8 +22,8 @@ Backup::Model.new(:redis_backups, "Redis AWS Backups") do
   end
 
   store_with S3 do |s3|
-    s3.region             = <%= @region %>
-    s3.bucket             = <%= @bucket %>
-    s3.path               = <%= @path %>
-    end
+    s3.region             = "<%= @region %>"
+    s3.bucket             = "<%= @bucket %>"
+    s3.path               = "<%= @path %>"
+  end
 end

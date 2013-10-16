@@ -5,7 +5,7 @@ Backup::Model.new(:redis_backups, "Redis Local Backups") do
 
   database Redis, :redis_backups do |db|
     db.name               = "dump"
-    db.host               = <%= @slave_ip %>
+    db.host               = "<%= @slave_ip %>"
     db.port               = <%= @slave_port %>
     db.path               = "/var/lib/redis"
     db.socket             = "/var/run/redis/redis.sock"
@@ -17,7 +17,7 @@ Backup::Model.new(:redis_backups, "Redis Local Backups") do
   end
 
   store_with Local do |local|
-    local.path = <%= @backups_path %>
+    local.path = "<%= @backups_path %>"
     local.keep = <%= @rotate_me %>
   end
 end

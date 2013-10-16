@@ -19,8 +19,8 @@ when "rackspace"
     owner node[:redis][:user]
     group node[:redis][:user]
     variables ({
-      :rackspace_api_key => default[:rackspace][:api][:key],
-      :rackspace_user => default[:rackspace][:user],
+      :rackspace_api_key => node[:rackspace][:api][:key],
+      :rackspace_user => node[:rackspace][:user],
       :slave_ip => node[:rackspace][:private_ip],
       :rackspace_cf_container => node[:rackspace][:cf][:container],
       :rackspace_cf_segments => node[:rackspace][:cf][:segments]
@@ -35,7 +35,7 @@ when "aws"
     variables ({
       :access_key_id => node[:aws][:access_key_id],
       :secret_access_key => node[:aws][:secret_access_key],
-      :slave_ip => node[:ipaddress],
+      :slave_ip => node[:redis][:bind],
       :region => node[:aws][:region],
       :bucket => node[:aws][:bucket],
       :path => '/'
@@ -48,10 +48,10 @@ else
     owner node[:redis][:user]
     group node[:redis][:user]
     variables ({
-      :slave_ip => node[:ipaddress],
+      :slave_ip => node[:redis][:bind],
       :slave_port => 6379,
       :backups_path => node[:local][:path],
-      :rotate_me => node[:local][:rotate_me]
+      :rotate_me => node[:local][:rotate]
     })
   end
 end
